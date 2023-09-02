@@ -1,8 +1,8 @@
 <template>
   <!-- 首页 -->
   <div v-show="cliWidth > 990" class="pc-container ">
-    <el-carousel :interval="3000" arrow="always" :height="bannerHeight + 'px'" class="my-carousel" ref="carousel">
-      <el-carousel-item v-for="(item, index) of imgList.pc_banner" :key="index">
+    <el-carousel :interval="3000" arrow="always" :height="bannerHeight + 'px'" class="my-carousel" ref="carousel" >
+      <el-carousel-item v-for="(item, index) of bannerImgList" :key="index">
         <a href="https://processing.zooszyservice.com/lr/chatpre.aspx?id=KHT73441085" target="_blank">
           <img :src="item" class="carousel-img" /></a>
       </el-carousel-item>
@@ -21,7 +21,7 @@
 
 
     <el-carousel :interval="3000" arrow="always" :height="dockerHeight + 'px'" class="my-carousel" ref="carousel">
-      <el-carousel-item v-for="(item, index) of imgList.pc_doctor" :key="index">
+      <el-carousel-item v-for="(item, index) of doctorImgList" :key="index">
         <a href="https://processing.zooszyservice.com/lr/chatpre.aspx?id=KHT73441085" target="_blank">
           <img :src="item" class="carousel-img" />
         </a>
@@ -34,8 +34,8 @@
         <h2>BRAND INFORMATION</h2>
         <h4>品牌资讯</h4>
       </div>
-      <div class="activity-main">
-        <template v-for="(item, index) of imgList.pc_brand" :key="index">
+      <div class="activity-main" >
+        <template v-for="(item, index) of brandImgList" :key="index">
           <div class="activity-item" @click="goUrl()">
             <img :src="item">
             <div class="activity-content">
@@ -49,8 +49,8 @@
 
   </div>
   <div v-show="cliWidth < 768">
-    <van-swipe :autoplay="3000" indicator-color="white">
-      <van-swipe-item v-for="(item, index) of imgList.mobile_banner" :key="index">
+    <van-swipe :autoplay="3000" indicator-color="white" >
+      <van-swipe-item v-for="(item, index) of bannerImgList" :key="index">
         <img :src="item" style="width: 100%; height: auto" />
       </van-swipe-item>
     </van-swipe>
@@ -101,15 +101,21 @@ const goUrl = () => {
 };
 
 // 获取轮播图片等
-const imgList = ref();
+const bannerImgList = ref();
+const doctorImgList = ref();
+const brandImgList = ref();
 let system: any;
 const userStore = useUserStore();
 if (userStore.systemMsg) {
   system = JSON.parse(userStore.systemMsg);
   if (cliWidth.value > 990) {
-    imgList.value = system.pc;
+    bannerImgList.value = system.pc.pc_banner;
+    doctorImgList.value = system.pc.pc_doctor;
+    brandImgList.value = system.pc.pc_brand;
   } else {
-    imgList.value = system.mobile;
+    bannerImgList.value = system.mobile.mobile_banner;
+    doctorImgList.value = system.mobile.mobile_doctor;
+    brandImgList.value = system.mobile.mobile_brand;
   }
 }
 //产品

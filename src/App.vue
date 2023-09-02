@@ -43,16 +43,6 @@ const handleScroll = () => {
     isShowBack.value = false;
   }
 };
-onMounted(() => {
-
-  window.addEventListener("scroll", handleScroll); // 获取滑动高度 一般在刚进入页面写入(componentDidMount)
-
-  // window.onresize = () => {
-  //   cliWidth.value = document.documentElement.clientWidth;
-  // };
-});
-const router = useRouter();
-
 // 获取系统设置信息
 const getLogo = () => {
   websiteConfigPort().then((res) => {
@@ -71,6 +61,22 @@ const backTop = () => {
     behavior: "smooth",
   });
 };
+
+onMounted(() => {
+  window.addEventListener("beforeunload", (e) => {
+    console.log(e);
+    sessionStorage.setItem("product_type_list", "");
+    sessionStorage.setItem("support_type_list", "");
+  }); //监听页面刷新触发事件
+
+  window.addEventListener("scroll", handleScroll); // 获取滑动高度 一般在刚进入页面写入(componentDidMount)
+
+  // window.onresize = () => {
+  //   cliWidth.value = document.documentElement.clientWidth;
+  // };
+});
+const router = useRouter();
+
 
 //屏幕滑动
 //手指按下屏幕
