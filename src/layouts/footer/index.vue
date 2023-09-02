@@ -55,7 +55,6 @@ a {
     .nav-every {
       text-align: center;
       flex: 1;
-      padding: 0 30px;
       img{
         width: 100%;
       }
@@ -80,8 +79,9 @@ a {
 
     .line {
       width: 1px;
-      height: 78px;
+      height: 90px;
       background-color: #dbdbdb;
+      margin: 0 50px;
     }
 
   }
@@ -112,14 +112,14 @@ a {
 
 @media screen and (min-width: 1300px) {
   .container-main {
-    width: 75%;
+    width: 70%;
     margin: 0 auto;
   }
 }
 
 @media screen and (max-width: 1299px) {
   .container-main {
-    width: 85%;
+    width: 70%;
     margin: 0 auto;
   }
 }

@@ -3,15 +3,16 @@
   <div v-show="cliWidth > 990" class="pc-container ">
     <el-carousel :interval="3000" arrow="always" :height="bannerHeight + 'px'" class="my-carousel" ref="carousel">
       <el-carousel-item v-for="(item, index) of imgList.pc_banner" :key="index">
-        <img :src="item" class="carousel-img" />
+        <a href="https://processing.zooszyservice.com/lr/chatpre.aspx?id=KHT73441085" target="_blank">
+          <img :src="item" class="carousel-img" /></a>
       </el-carousel-item>
     </el-carousel>
 
     <div class="activity">
       <div class="activity-main">
         <template v-for="(item, index) of productList" :key="index">
-          <div class="activity-item animate__animated animate__fadeInUpBig"  :class=[item.icon]
-            :style="'visibility: visible; animation-duration: 1s; animation-delay: ' + (index >= 10 ? index / 10 + 's' : '0.' + index + 's') + '; animation-name: fadeInUpBig;'">
+          <div class="activity-item animate__animated animate__fadeInUpBig" :class=[item.icon]
+            :style="'visibility: visible; animation-duration: 1s; animation-delay: ' + (index >= 10 ? index / 10 + 's' : '0.' + index + 's') + '; animation-name: fadeInUpBig;'" @click="goUrl()">
             {{ item.name }}
           </div>
         </template>
@@ -21,7 +22,9 @@
 
     <el-carousel :interval="3000" arrow="always" :height="dockerHeight + 'px'" class="my-carousel" ref="carousel">
       <el-carousel-item v-for="(item, index) of imgList.pc_doctor" :key="index">
-        <img :src="item" class="carousel-img" />
+        <a href="https://processing.zooszyservice.com/lr/chatpre.aspx?id=KHT73441085" target="_blank">
+          <img :src="item" class="carousel-img" />
+        </a>
       </el-carousel-item>
     </el-carousel>
 
@@ -33,8 +36,8 @@
       </div>
       <div class="activity-main">
         <template v-for="(item, index) of imgList.pc_brand" :key="index">
-          <div class="activity-item">
-            <img :src="item" >
+          <div class="activity-item" @click="goUrl()">
+            <img :src="item">
             <div class="activity-content">
               <div class="key">{{ supportList[index].key }}</div>
               <div class="content">{{ supportList[index].content }}</div>
@@ -86,14 +89,16 @@ const setSize = () => {
     } else {
       width = document.getElementsByClassName("pc-container")[3].clientWidth;
     }
-    bannerHeight.value = (width * 530) / 1920;
+    bannerHeight.value = (width * 530) / 1280;
     dockerHeight.value = (width * 930) / 1920;
   });
 };
 
 const codeShow = ref(false);
 
-
+const goUrl = () => {
+    window.open('https://processing.zooszyservice.com/lr/chatpre.aspx?id=KHT73441085');
+};
 
 // 获取轮播图片等
 const imgList = ref();
@@ -148,14 +153,13 @@ const browserIsIe = () => {
     }
 
     .activity-main {
-      width: 80%;
+      width: 70%;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
 
       .activity-item {
-        margin-right: calc(8% / 4);
         margin-bottom: calc(8% / 4);
         flex: 0 0 23%;
         padding: 66px 0 30px 0;
@@ -166,6 +170,7 @@ const browserIsIe = () => {
         text-align: center;
         font-size: 16px;
         color: #8B8B8B;
+        cursor: pointer;
 
         img {
           width: 100%;
@@ -178,15 +183,6 @@ const browserIsIe = () => {
         background-color: #E1E1E1;
       }
 
-      /* 去除每行尾的多余边距 */
-      .activity-item :nth-child(4n) {
-        margin-right: 0;
-      }
-
-      /* 使最后一个元素的边距填满剩余空间 */
-      .activity-item :last-child {
-        margin-right: auto;
-      }
 
       .p_1 {
         background-image: url('../../assets/imgs/pc/home/p_1.png');
@@ -241,7 +237,6 @@ const browserIsIe = () => {
       background: #FFFFFF;
 
       .activity-item {
-        margin-right: calc(12% / 4);
         margin-bottom: calc(12% / 4);
         flex: 0 0 22%;
         background-color: transparent;
