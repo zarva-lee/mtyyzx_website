@@ -28,7 +28,6 @@
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "@/store/userStore";
-import { websiteConfigPort } from "@/request/api/system";
 import dataConf from "@/utils/data.json";
 
 const userStore = useUserStore();
@@ -43,13 +42,6 @@ const handleScroll = () => {
     isShowBack.value = false;
   }
 };
-// 获取系统设置信息
-const getLogo = () => {
-  websiteConfigPort().then((res) => {
-    userStore.setSystemMsg(res.data.data);
-  });
-};
-getLogo();
 //设置产品
 userStore.setProductType(dataConf.product);
 

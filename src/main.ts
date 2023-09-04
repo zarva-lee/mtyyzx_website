@@ -3,11 +3,12 @@ import pinia from "@/store/store"; // 引入创建好的pinia
 // vue-router
 import router from "./router/index";
 import "./router/router";
-import 'animate.css' 
 import { createApp } from "vue";
 import App from "./App.vue";
+import "wow.js/css/libs/animate.css";
 
 const app = createApp(App);
+
 // 自定义指令-防止按钮重复点击
 app.directive("preventClick", {
   mounted(el) {

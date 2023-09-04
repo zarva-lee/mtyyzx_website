@@ -10,3 +10,4 @@ declare module "vue-directive-touch";
 declare module "swiper";
 declare module "swiper/vue";
 declare module "nativeshare";
+declare module "wow.js";
